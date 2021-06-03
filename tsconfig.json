@@ -1,0 +1,35 @@
+{
+  "compileOnSave": true,
+  "include": [
+    "src"
+  ],
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es2016",
+    "jsx": "react-jsx",
+    "strictFunctionTypes": true,
+    "sourceMap": true,
+    "allowJs": false,
+    "alwaysStrict": true,
+    "moduleResolution": "Node",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ],
+  "extends": "./tsconfig.paths.json"
+}
