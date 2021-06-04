@@ -1,12 +1,48 @@
-import { Grid, List, ListItem, ListItemIcon, ListItemText, ListSubheader, makeStyles } from "@material-ui/core";
-import { Email, Equalizer, Favorite, Language, Laptop, PieChart, Room, TableChart, Widgets } from "@material-ui/icons";
+import {
+  Badge,
+  Collapse,
+  Grid,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemSecondaryAction,
+  ListItemSecondaryActionProps,
+  ListItemText,
+  ListSubheader,
+  makeStyles,
+} from "@material-ui/core";
+import {
+  ArrowDropDown,
+  Email,
+  Equalizer,
+  Favorite,
+  Language,
+  Laptop,
+  PieChart,
+  Room,
+  TableChart,
+  Widgets,
+} from "@material-ui/icons";
+import React from "react";
 
 export interface MenuProps {}
 
 const styles = makeStyles((theme) => ({
   container: {
     padding: theme.spacing(1),
-    maxWidth: 250,
+    maxWidth: 300,
+    minWidth: 250,
+  },
+  listIcon: {
+    padding: theme.spacing(0, 1, 0, 0),
+    fontSize: "x-small",
+    minWidth: "auto",
+  },
+  listItem: {
+    borderRadius: 6,
+  },
+  subListContainer: {
+    margin: theme.spacing(0, 0, 0, 1),
   },
 }));
 const Menu: React.FC<MenuProps> = () => {
@@ -14,25 +50,28 @@ const Menu: React.FC<MenuProps> = () => {
   const navigationOptions = [
     {
       title: "Dashboard",
-      icon: <Laptop />,
+      icon: <Laptop fontSize="small" />,
     },
     {
       title: "Analytics",
-      icon: <PieChart />,
+      icon: <PieChart fontSize="small" />,
     },
     {
       title: "Email",
-      icon: <Email />,
+      icon: <Email fontSize="small" />,
+      badgeContent: 6,
+      subList: ["Inbox", "Compose", "Details"],
     },
   ];
   const componentOptions = [
     {
       title: "Widgets",
-      icon: <Widgets />,
+      icon: <Widgets fontSize="small" />,
     },
     {
       title: "UI Kits",
-      icon: <Favorite />,
+      icon: <Favorite fontSize="small" />,
+      subList: ["Bootstrap", "Buttons", "Card", "Icons", "Modal & Notification", "Typography", "Tabs & Accordions"],
     },
     {
       title: "Forms",
@@ -40,19 +79,19 @@ const Menu: React.FC<MenuProps> = () => {
     },
     {
       title: "Tables",
-      icon: <TableChart />,
+      icon: <TableChart fontSize="small" />,
     },
     {
       title: "Charts",
-      icon: <Equalizer />,
+      icon: <Equalizer fontSize="small" />,
     },
     {
       title: "Map",
-      icon: <Room />,
+      icon: <Room fontSize="small" />,
     },
     {
       title: "Pages",
-      icon: <Language />,
+      icon: <Language fontSize="small" />,
     },
   ];
 
@@ -69,10 +108,40 @@ const Menu: React.FC<MenuProps> = () => {
           disablePadding
         >
           {navigationOptions.map((option) => (
-            <ListItem key={option.title} dense button>
-              <ListItemIcon>{option.icon}</ListItemIcon>
-              <ListItemText>{option.title}</ListItemText>
-            </ListItem>
+            <React.Fragment>
+              <ListItem className={classes.listItem} key={option.title} dense button>
+                <ListItemIcon
+                  classes={{
+                    root: classes.listIcon,
+                  }}
+                >
+                  {typeof option.badgeContent === "number" && option.badgeContent > 0 ? (
+                    <Badge badgeContent={option.badgeContent} color="error" variant="dot">
+                      {option.icon}
+                    </Badge>
+                  ) : (
+                    option.icon
+                  )}
+                </ListItemIcon>
+                <ListItemText>{option.title}</ListItemText>
+                {Array.isArray(option.subList) && (
+                  <ListItemSecondaryAction>
+                    <ArrowDropDown />
+                  </ListItemSecondaryAction>
+                )}
+              </ListItem>
+              {option.subList && (
+                <Collapse in={true} timeout="auto" unmountOnExit>
+                  <List className={classes.subListContainer} dense component="div" disablePadding>
+                    {option.subList.map((option) => (
+                      <ListItem className={classes.listItem} key={option} button>
+                        <ListItemText>{option}</ListItemText>
+                      </ListItem>
+                    ))}
+                  </List>
+                </Collapse>
+              )}
+            </React.Fragment>
           ))}
         </List>
       </Grid>
@@ -87,10 +156,34 @@ const Menu: React.FC<MenuProps> = () => {
           disablePadding
         >
           {componentOptions.map((option) => (
-            <ListItem key={option.title} button>
-              <ListItemIcon>{option.icon}</ListItemIcon>
-              <ListItemText>{option.title}</ListItemText>
-            </ListItem>
+            <React.Fragment>
+              <ListItem className={classes.listItem} key={option.title} button>
+                <ListItemIcon
+                  classes={{
+                    root: classes.listIcon,
+                  }}
+                >
+                  {option.icon}
+                </ListItemIcon>
+                <ListItemText>{option.title}</ListItemText>
+                {Array.isArray(option.subList) && (
+                  <ListItemSecondaryAction>
+                    <ArrowDropDown />
+                  </ListItemSecondaryAction>
+                )}
+              </ListItem>
+              {option.subList && (
+                <Collapse in={false} timeout="auto" unmountOnExit>
+                  <List className={classes.subListContainer} dense component="div" disablePadding>
+                    {option.subList.map((option) => (
+                      <ListItem className={classes.listItem} key={option} button>
+                        <ListItemText>{option}</ListItemText>
+                      </ListItem>
+                    ))}
+                  </List>
+                </Collapse>
+              )}
+            </React.Fragment>
           ))}
         </List>
       </Grid>
@@ -98,4 +191,4 @@ const Menu: React.FC<MenuProps> = () => {
   );
 };
 
-export default Menu;
+export default React.memo(Menu);
