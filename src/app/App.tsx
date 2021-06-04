@@ -6,10 +6,11 @@ import Menu from "./Menu";
 export interface AppProps {}
 
 const styles = makeStyles((theme) => ({
-  container: {
+  appContainer: {
     height: "100vh",
     width: "100vw",
     overflow: "hidden",
+    background: "#ebeef4",
   },
   menu: {
     borderRight: "1px solid #dae0ec",
@@ -25,11 +26,11 @@ const App: React.FC<AppProps> = () => {
   const classes = styles();
 
   return (
-    <Grid container className={classes.container}>
+    <Grid container className={classes.appContainer}>
       <Grid xs={12} item>
         <Header />
       </Grid>
-      <Grid style={{ height: "calc(100%-60px)" }} xs={12}>
+      <Grid style={{ height: "calc(100vh - 60px)" }} xs={12}>
         <Grid style={{ height: "100%" }} wrap="nowrap" container>
           <Grid className={classes.menu} item>
             <Menu />

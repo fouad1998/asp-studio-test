@@ -27,9 +27,10 @@ const styles = makeStyles((theme) => ({
     borderWidth: 1,
     borderStyle: "solid",
     borderColor: theme.palette.grey[100],
+    background: "transparent",
     "& .title": {
-      color: theme.palette.grey[300],
-      fontWeight: 500,
+      color: theme.palette.grey[100],
+      fontWeight: 600,
       fontSize: "1.2rem",
     },
     "& .earning": {
