@@ -27,8 +27,8 @@ const styles = makeStyles((theme) => ({
     position: "absolute",
     right: -5,
     bottom: -18,
-    height: 80,
-    width: 80,
+    height: 100,
+    width: 100,
   },
   title: {
     color: theme.palette.grey[100],
@@ -51,7 +51,7 @@ const styles = makeStyles((theme) => ({
   },
   progress: {
     color: "rgba(255,255,255,.8)",
-    padding: theme.spacing(0.5, 0, 0.25),
+    padding: theme.spacing(0.5, 0, 0),
     "& p": {
       fontSize: 13,
     },

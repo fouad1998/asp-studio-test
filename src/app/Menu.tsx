@@ -1,29 +1,38 @@
 import {
   Badge,
+  Button,
   Collapse,
   Grid,
   List,
   ListItem,
   ListItemIcon,
   ListItemSecondaryAction,
-  ListItemSecondaryActionProps,
   ListItemText,
   ListSubheader,
   makeStyles,
+  Typography,
 } from "@material-ui/core";
 import {
+  AccountCircle,
   ArrowDropDown,
+  ArrowDropUp,
+  CalendarToday,
+  CallMerge,
+  Description,
   Email,
   Equalizer,
   Favorite,
+  Fingerprint,
+  Help,
   Language,
   Laptop,
   PieChart,
   Room,
+  Settings,
   TableChart,
   Widgets,
 } from "@material-ui/icons";
-import React from "react";
+import React, { useCallback, useState } from "react";
 
 export interface MenuProps {}
 
@@ -32,6 +41,14 @@ const styles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     maxWidth: 300,
     minWidth: 250,
+    overflow: "hidden",
+    overflowY: "auto",
+    height: "100%",
+    "-ms-overflow-style": "none" /* IE and Edge */,
+    "scrollbar-width": "none",
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
   },
   listIcon: {
     padding: theme.spacing(0, 1, 0, 0),
@@ -44,8 +61,29 @@ const styles = makeStyles((theme) => ({
   subListContainer: {
     margin: theme.spacing(0, 0, 0, 1),
   },
+  documentationButtonContainer: {
+    margin: theme.spacing(2, 0, 0),
+    padding: theme.spacing(0, 0, 3),
+    "& button": {
+      textTransform: "none",
+      backgroundColor: "#d1d9e7",
+      borderRadius: 50,
+      padding: theme.spacing(0.5, 3, 0.5),
+      display: "flex",
+      justify: "center",
+      alignItems: "center",
+      "& p": {
+        fontWeight: 600,
+        fontSize: "0.9rem",
+      },
+      "&:hover": {
+        backgroundColor: "#d1d9e7",
+      },
+    },
+  },
 }));
 const Menu: React.FC<MenuProps> = () => {
+  const [openSubList, setOpenSubList] = useState<string | undefined>(void 0);
   const classes = styles();
   const navigationOptions = [
     {
@@ -75,7 +113,7 @@ const Menu: React.FC<MenuProps> = () => {
     },
     {
       title: "Forms",
-      icon: "",
+      icon: <Description />,
     },
     {
       title: "Tables",
@@ -94,13 +132,47 @@ const Menu: React.FC<MenuProps> = () => {
       icon: <Language fontSize="small" />,
     },
   ];
+  const userOptions = [
+    {
+      title: "Profile",
+      icon: <AccountCircle fontSize="small" />,
+    },
+    {
+      title: "Calendar",
+      icon: <CalendarToday fontSize="small" />,
+    },
+    {
+      title: "Settings",
+      icon: <Settings fontSize="small" />,
+    },
+    {
+      title: "Help",
+      icon: <Help fontSize="small" />,
+    },
+    {
+      title: "ASP Identity",
+      icon: <Fingerprint fontSize="small" />,
+    },
+  ];
+
+  const onHighListItemClickHandler = useCallback((item?: string) => {
+    return () => {
+      setOpenSubList((state) => {
+        if (state === item) {
+          return void 0;
+        }
+
+        return item;
+      });
+    };
+  }, []);
 
   return (
     <Grid container className={classes.container}>
       <Grid xs={12} item>
         <List
           subheader={
-            <ListSubheader component="div" id="nested-list-subheader">
+            <ListSubheader style={{ position: "static" }} component="div" id="nested-list-subheader">
               Navigation
             </ListSubheader>
           }
@@ -109,7 +181,13 @@ const Menu: React.FC<MenuProps> = () => {
         >
           {navigationOptions.map((option) => (
             <React.Fragment>
-              <ListItem className={classes.listItem} key={option.title} dense button>
+              <ListItem
+                onClick={onHighListItemClickHandler(option.title)}
+                className={classes.listItem}
+                key={option.title}
+                dense
+                button
+              >
                 <ListItemIcon
                   classes={{
                     root: classes.listIcon,
@@ -126,12 +204,12 @@ const Menu: React.FC<MenuProps> = () => {
                 <ListItemText>{option.title}</ListItemText>
                 {Array.isArray(option.subList) && (
                   <ListItemSecondaryAction>
-                    <ArrowDropDown />
+                    {option.title === openSubList ? <ArrowDropUp /> : <ArrowDropDown />}
                   </ListItemSecondaryAction>
                 )}
               </ListItem>
               {option.subList && (
-                <Collapse in={true} timeout="auto" unmountOnExit>
+                <Collapse in={option.title === openSubList} timeout="auto" unmountOnExit>
                   <List className={classes.subListContainer} dense component="div" disablePadding>
                     {option.subList.map((option) => (
                       <ListItem className={classes.listItem} key={option} button>
@@ -148,7 +226,7 @@ const Menu: React.FC<MenuProps> = () => {
       <Grid xs={12} item>
         <List
           subheader={
-            <ListSubheader component="div" id="nested-list-subheader">
+            <ListSubheader style={{ position: "static" }} component="div" id="nested-list-subheader">
               Components
             </ListSubheader>
           }
@@ -157,7 +235,12 @@ const Menu: React.FC<MenuProps> = () => {
         >
           {componentOptions.map((option) => (
             <React.Fragment>
-              <ListItem className={classes.listItem} key={option.title} button>
+              <ListItem
+                onClick={onHighListItemClickHandler(option.title)}
+                className={classes.listItem}
+                key={option.title}
+                button
+              >
                 <ListItemIcon
                   classes={{
                     root: classes.listIcon,
@@ -168,12 +251,12 @@ const Menu: React.FC<MenuProps> = () => {
                 <ListItemText>{option.title}</ListItemText>
                 {Array.isArray(option.subList) && (
                   <ListItemSecondaryAction>
-                    <ArrowDropDown />
+                    {option.title === openSubList ? <ArrowDropUp /> : <ArrowDropDown />}
                   </ListItemSecondaryAction>
                 )}
               </ListItem>
               {option.subList && (
-                <Collapse in={false} timeout="auto" unmountOnExit>
+                <Collapse in={option.title === openSubList} timeout="auto" unmountOnExit>
                   <List className={classes.subListContainer} dense component="div" disablePadding>
                     {option.subList.map((option) => (
                       <ListItem className={classes.listItem} key={option} button>
@@ -186,6 +269,48 @@ const Menu: React.FC<MenuProps> = () => {
             </React.Fragment>
           ))}
         </List>
+      </Grid>
+      <Grid xs={12} item>
+        <List
+          subheader={
+            <ListSubheader style={{ position: "static" }} component="div" id="nested-list-subheader">
+              Components
+            </ListSubheader>
+          }
+          dense
+          disablePadding
+        >
+          {userOptions.map((option) => (
+            <React.Fragment>
+              <ListItem className={classes.listItem} key={option.title} button>
+                <ListItemIcon
+                  classes={{
+                    root: classes.listIcon,
+                  }}
+                >
+                  {option.icon}
+                </ListItemIcon>
+                <ListItemText>{option.title}</ListItemText>
+              </ListItem>
+            </React.Fragment>
+          ))}
+        </List>
+      </Grid>
+      <Grid xs={12} className={classes.documentationButtonContainer} item>
+        <Grid justify="center" container>
+          <Grid item>
+            <Button>
+              <Grid alignItems="center" container>
+                <Grid item>
+                  <CallMerge />
+                </Grid>
+                <Grid item>
+                  <Typography>Documentation</Typography>
+                </Grid>
+              </Grid>
+            </Button>
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );

@@ -49,7 +49,6 @@ const styles = makeStyles((theme) => ({
     right: 0,
     bottom: 0,
     background: theme.palette.primary.main,
-    zIndex: -1,
     "& img": {
       width: "100% !important",
       height: "100% !important",
@@ -96,9 +95,10 @@ const styles = makeStyles((theme) => ({
   },
   imageBackgroundContainer: {
     position: "absolute",
-    right: 10,
-    bottom: 25,
-    minHeight: 250,
+    right: 8,
+    bottom: 40,
+    width: "50%",
+    minHeight: 200,
     maxHeight: "100%",
   },
 }));
@@ -113,7 +113,7 @@ const MainCard: React.FC<MainCardProps> = () => {
       <Grid xs={12} item>
         <Grid container>
           {/** First section */}
-          <Grid xs={12} item>
+          <Grid style={{ position: "relative" }} xs={12} item>
             <Grid container>
               <Grid xs={12} item>
                 <Typography variant="h6" className="title">
@@ -142,7 +142,7 @@ const MainCard: React.FC<MainCardProps> = () => {
           {/** Second section */}
           <Grid style={{ position: "relative" }} xs={12} item>
             <Grid container>
-              <Grid xs={8} item>
+              <Grid xs={12} md={8} item>
                 <Grid container>
                   <Grid xs={12} className={classes.divider} item>
                     <Divider />

@@ -59,7 +59,7 @@ const Header: React.FC<HeaderProps> = () => {
 
   return (
     <Paper className={classes.paper}>
-      <Grid className={classes.container} justify="space-between" alignItems="center" container>
+      <Grid className={classes.container} wrap="nowrap" justify="space-between" alignItems="center" container>
         <Grid item>
           <IconButton className={classes.menuButton}>
             <Menu />
