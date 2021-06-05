@@ -1,4 +1,4 @@
-import { Button, Grid, IconButton, LinearProgress, makeStyles, Typography } from "@material-ui/core";
+import { Button, Grid, LinearProgress, makeStyles, Typography } from "@material-ui/core";
 import { ArrowDropDown, ArrowDropUp, ChevronRight } from "@material-ui/icons";
 import React from "react";
 
@@ -64,7 +64,7 @@ const styles = makeStyles((theme) => ({
     fontSize: 13,
   },
   viewReport: {
-    margin: theme.spacing(3, 0, 0.7),
+    margin: theme.spacing(2, 0, 0.35),
     "& button": {
       textTransform: "none",
       color: "white",
@@ -113,8 +113,10 @@ const Card: React.FC<CardProps> = (props) => {
         />
       </Grid>
       <Grid xs={12} item>
-        <Grid alignItems="center" className={classes.progress} container>
-          <Grid item>{percentProgress >= 0 ? <ArrowDropUp /> : <ArrowDropDown />}</Grid>
+        <Grid className={classes.progress} container>
+          <Grid item>
+            {percentProgress >= 0 ? <ArrowDropUp fontSize="small" /> : <ArrowDropDown fontSize="small" />}
+          </Grid>
           <Grid item>
             <Typography>
               {Math.abs(percentProgress).toFixed(0)} {percentProgress >= 0 ? "increase" : "decrease"}

@@ -108,7 +108,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
                         <Grid item>
                           <Grid container>
                             <Grid xs={12} item>
-                              <Typography style={{ fontSize: "1.5rem", fontWeight: 900 }}>184.593</Typography>
+                              <Typography style={{ fontSize: "1.5rem", fontWeight: 900 }}>184,593</Typography>
                             </Grid>
                             <Grid xs={12} item>
                               <Grid style={{ color: "green" }} alignItems="center" container>
@@ -135,14 +135,14 @@ const Dashboard: React.FC<DashboardProps> = () => {
                       <Grid wrap="nowrap" justify="space-evenly" container>
                         <Grid item>
                           <Grid justify="center" container>
-                            <Grid style={{ padding: "0.25rem 0" }} item>
+                            <Grid style={{ padding: "0 0 0.25rem 0" }} item>
                               <Avatar style={{ background: "rgba(31,107,255,.2)", padding: "0.2rem" }}>
-                                <ThumbUp color="primary" />
+                                <ThumbUp color="primary" fontSize="small" />
                               </Avatar>
                             </Grid>
                             <Grid xs={12} item>
                               <Typography
-                                style={{ fontSize: "1rem", fontWeight: 900, padding: "0.25rem 0" }}
+                                style={{ fontSize: "0.8rem", fontWeight: 900, padding: "0.2rem 0" }}
                                 align="center"
                               >
                                 306.5k
@@ -157,14 +157,14 @@ const Dashboard: React.FC<DashboardProps> = () => {
                         </Grid>
                         <Grid item>
                           <Grid justify="center" container>
-                            <Grid style={{ padding: "0.25rem 0" }} item>
+                            <Grid style={{ padding: "0 0 0.25rem 0" }} item>
                               <Avatar style={{ background: "rgba(31,107,255,.2)", padding: "0.2rem" }}>
-                                <QuestionAnswer color="primary" />
+                                <QuestionAnswer color="primary" fontSize="small" />
                               </Avatar>
                             </Grid>
                             <Grid xs={12} item>
                               <Typography
-                                style={{ fontSize: "1rem", fontWeight: 900, padding: "0.25rem 0" }}
+                                style={{ fontSize: "0.8rem", fontWeight: 900, padding: "0.2rem 0" }}
                                 align="center"
                               >
                                 27.5k

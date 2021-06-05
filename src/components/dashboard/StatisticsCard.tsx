@@ -1,7 +1,6 @@
 import { Grid, IconButton, makeStyles, Typography } from "@material-ui/core";
 import { Replay } from "@material-ui/icons";
 import React from "react";
-import { Children } from "react";
 
 export interface StatisticsCardProps {
   title: string;
@@ -31,7 +30,7 @@ const styles = makeStyles((theme) => ({
     fontSize: "0.87rem",
   },
   children: {
-    margin: theme.spacing(1.5, 0, 1),
+    margin: theme.spacing(1.5, 0, 0),
   },
 }));
 const StatisticsCard: React.FC<StatisticsCardProps> = (props) => {

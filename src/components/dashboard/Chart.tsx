@@ -1,9 +1,9 @@
 import { Grid, makeStyles } from "@material-ui/core";
 import React, { useRef } from "react";
 import { useEffect } from "react";
-import { axisBottom, axisLeft, line, max, min, scaleBand, scaleLinear, scaleTime, select } from "d3";
-import { roundUpToHumainValue } from "@utils/roundUpToHumainValue";
-import { roundDownToHumainValue } from "@utils/roundDownToHumainValue";
+import { axisBottom, axisLeft, line, max, min, scaleLinear, scaleTime, select } from "d3";
+// import { roundUpToHumainValue } from "@utils/roundUpToHumainValue";
+// import { roundDownToHumainValue } from "@utils/roundDownToHumainValue";
 import { betweenDate } from "@utils/betweenDate";
 
 export interface ChartProps {
@@ -282,7 +282,16 @@ const Chart: React.FC<ChartProps> = (props) => {
     bottomAxisGroup.selectAll("path.domain").remove();
     leftAxisGroup.selectAll("line").remove();
     bottomAxisGroup.selectAll("line").attr("stroke", "#e0e0e0");
-  }, [earningData, datesStrings, yAxisTickets, yellowZone, greenRange, annoTestDate]);
+  }, [
+    earningData,
+    datesStrings,
+    yAxisTickets,
+    xAxisTickets,
+    yellowZone,
+    greenRange,
+    annoTestDate,
+    pointAnnotationDate,
+  ]);
 
   return (
     <Grid container>

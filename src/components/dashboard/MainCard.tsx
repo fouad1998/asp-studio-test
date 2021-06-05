@@ -29,13 +29,15 @@ const styles = makeStyles((theme) => ({
     borderColor: theme.palette.grey[100],
     background: "transparent",
     "& .title": {
-      color: theme.palette.grey[100],
+      color: "rgba(255,255,255,.8)",
       fontWeight: 600,
-      fontSize: "1.2rem",
+      fontSize: "1rem",
+      padding: theme.spacing(0, 0, 0.8),
     },
     "& .earning": {
       color: "white",
       fontWeight: 600,
+      fontSize: "1.5rem",
     },
     "& .progress": {
       color: theme.palette.grey[400],
@@ -47,7 +49,7 @@ const styles = makeStyles((theme) => ({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0,
+    bottom: -10,
     background: theme.palette.primary.main,
     "& img": {
       width: "100% !important",
@@ -61,15 +63,19 @@ const styles = makeStyles((theme) => ({
   withdrawButton: {
     textTransform: "none",
     background: "#fc0",
-    padding: theme.spacing(0.75, 5, 0.75),
+    padding: theme.spacing(1, 5, 1),
     borderRadius: 30,
     display: "flex",
     alignItems: "center",
     "& p, & svg": {
-      fontWeight: 600,
+      fontWeight: 900,
+      color: "black",
       fontSize: "0.9rem",
       display: "flex",
       alignItems: "center",
+    },
+    "& svg": {
+      fontSize: "1.2rem",
     },
     "&:hover": {
       background: "#fc0",
@@ -126,7 +132,7 @@ const MainCard: React.FC<MainCardProps> = () => {
                 </Typography>
               </Grid>
               <Grid xs={12} item>
-                <Grid alignItems="center" container>
+                <Grid alignItems="flex-start" container>
                   <Grid className="progress" item>
                     <ArrowDropUp fontSize="small" />
                   </Grid>
