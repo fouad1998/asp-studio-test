@@ -6,8 +6,9 @@ import { ReactComponent as GmailSVG } from "@svg/email.svg";
 import { ReactComponent as BrowserSVG } from "@svg/browser.svg";
 import { ReactComponent as VisitorSVG } from "@svg/visitor.svg";
 import StatisticsCard from "@components/dashboard/StatisticsCard";
-import { ArrowDropUp, QuestionAnswer, ThumbUp } from "@material-ui/icons";
+import { ArrowDropUp, Person, QuestionAnswer, ThumbUp } from "@material-ui/icons";
 import RepartitionBar from "@components/dashboard/RepartitionBar";
+import Chart from "@components/dashboard/Chart";
 
 export interface DashboardProps {}
 
@@ -103,7 +104,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
                 <Grid spacing={2} container>
                   <Grid xs={12} item>
                     <StatisticsCard title="Total Users" subTitle="Store user account registration">
-                      <Grid container>
+                      <Grid wrap="nowrap" justify="space-between" container>
                         <Grid item>
                           <Grid container>
                             <Grid xs={12} item>
@@ -112,7 +113,7 @@ const Dashboard: React.FC<DashboardProps> = () => {
                             <Grid xs={12} item>
                               <Grid style={{ color: "green" }} alignItems="center" container>
                                 <Grid style={{ display: "flex", alignItems: "center", fontWeight: 600 }} item>
-                                  <ArrowDropUp />
+                                  <ArrowDropUp color="primary" />
                                 </Grid>
                                 <Grid item>
                                   <Typography style={{ fontWeight: 600, fontSize: "0.8rem" }}>+3.59%</Typography>
@@ -122,7 +123,9 @@ const Dashboard: React.FC<DashboardProps> = () => {
                           </Grid>
                         </Grid>
                         <Grid item>
-                          <Avatar color="primary" />
+                          <Avatar style={{ background: "rgba(31,107,255,.2)", padding: "0.3rem" }}>
+                            <Person color="primary" />
+                          </Avatar>
                         </Grid>
                       </Grid>
                     </StatisticsCard>
@@ -133,8 +136,8 @@ const Dashboard: React.FC<DashboardProps> = () => {
                         <Grid item>
                           <Grid justify="center" container>
                             <Grid style={{ padding: "0.25rem 0" }} item>
-                              <Avatar>
-                                <ThumbUp />
+                              <Avatar style={{ background: "rgba(31,107,255,.2)", padding: "0.2rem" }}>
+                                <ThumbUp color="primary" />
                               </Avatar>
                             </Grid>
                             <Grid xs={12} item>
@@ -155,8 +158,8 @@ const Dashboard: React.FC<DashboardProps> = () => {
                         <Grid item>
                           <Grid justify="center" container>
                             <Grid style={{ padding: "0.25rem 0" }} item>
-                              <Avatar>
-                                <QuestionAnswer />
+                              <Avatar style={{ background: "rgba(31,107,255,.2)", padding: "0.2rem" }}>
+                                <QuestionAnswer color="primary" />
                               </Avatar>
                             </Grid>
                             <Grid xs={12} item>
@@ -211,6 +214,54 @@ const Dashboard: React.FC<DashboardProps> = () => {
                       },
                     ]}
                     progress={20.9}
+                  />
+                </StatisticsCard>
+              </Grid>
+              <Grid xs={12} lg={6} item>
+                <StatisticsCard subTitle="Sales Analytics" title="Weekly sales performance chart">
+                  <Chart
+                    earningData={[
+                      8107, 8128, 8122, 8156, 8340, 8423, 8423, 8514, 8481, 8487, 8506, 8626, 8668, 8602, 8607, 8512,
+                      8496, 8600, 8881, 9340,
+                    ]}
+                    dates={[
+                      "2020-11-12",
+                      "2020-11-13",
+                      "2020-11-14",
+                      "2020-11-15",
+                      "2020-11-16",
+                      "2020-11-19",
+                      "2020-11-20",
+                      "2020-11-21",
+                      "2020-11-22",
+                      "2020-11-23",
+                      "2020-11-26",
+                      "2020-11-27",
+                      "2020-11-28",
+                      "2020-11-29",
+                      "2020-11-30",
+                      "2020-12-03",
+                      "2020-12-04",
+                      "2020-12-05",
+                      "2020-12-06",
+                      "2020-12-07",
+                    ]}
+                    greenRange={["2020-11-26", "2020-11-28"]}
+                    yAxisTickets={[7800, 8100, 8400, 8700, 9000, 9300, 9600]}
+                    xAxisTickets={[
+                      "2020-11-13",
+                      "2020-11-16",
+                      "2020-11-19",
+                      "2020-11-22",
+                      "2020-11-25",
+                      "2020-11-28",
+                      "2020-12-1",
+                      "2020-12-4",
+                      "2020-12-7",
+                    ]}
+                    yellowZone={[8600, 9000]}
+                    annoTestDate="2020-11-23"
+                    pointAnnotationDate="2020-12-1"
                   />
                 </StatisticsCard>
               </Grid>

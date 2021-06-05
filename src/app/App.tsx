@@ -30,14 +30,14 @@ const App: React.FC<AppProps> = () => {
       <Grid xs={12} item>
         <Header />
       </Grid>
-      <Grid style={{ height: "calc(100vh - 60px)" }} xs={12}>
+      <Grid style={{ height: "calc(100vh - 60px)" }} xs={12} item>
         <Grid style={{ height: "100%" }} wrap="nowrap" container>
           <Grid className={classes.menu} item>
             <Menu />
           </Grid>
           <Grid style={{ flex: "1 1 auto" }} item>
             <Grid className={classes.mainApp} container>
-              <Grid xs={12}>
+              <Grid xs={12} item>
                 <Dashboard />
               </Grid>
             </Grid>

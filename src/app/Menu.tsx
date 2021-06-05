@@ -114,22 +114,41 @@ const Menu: React.FC<MenuProps> = () => {
     {
       title: "Forms",
       icon: <Description />,
+      subList: ["Form Elements", "Form Plugins", "Wizards"],
     },
     {
       title: "Tables",
       icon: <TableChart fontSize="small" />,
+      subList: ["Table Elements", "Table Plugins"],
     },
     {
       title: "Charts",
       icon: <Equalizer fontSize="small" />,
+      subList: ["Chart.js", "Apexcharts.js"],
     },
     {
       title: "Map",
       icon: <Room fontSize="small" />,
     },
     {
+      title: "Layout",
+      icon: <CallMerge fontSize="small" />,
+      subList: ["Starter Page", "Fixed Footer", "Full Height", "Full Width", "Boxed Layout", "Minified Sidebar"],
+    },
+    {
       title: "Pages",
       icon: <Language fontSize="small" />,
+      subList: [
+        "Scrum Board",
+        "Products",
+        "Orders",
+        "Gallery",
+        "Search Results",
+        "Coming Soon Page",
+        "404 Error Page",
+        "Login",
+        "Register",
+      ],
     },
   ];
   const userOptions = [
@@ -179,15 +198,9 @@ const Menu: React.FC<MenuProps> = () => {
           dense
           disablePadding
         >
-          {navigationOptions.map((option) => (
-            <React.Fragment>
-              <ListItem
-                onClick={onHighListItemClickHandler(option.title)}
-                className={classes.listItem}
-                key={option.title}
-                dense
-                button
-              >
+          {navigationOptions.map((option, index) => (
+            <React.Fragment key={index}>
+              <ListItem onClick={onHighListItemClickHandler(option.title)} className={classes.listItem} dense button>
                 <ListItemIcon
                   classes={{
                     root: classes.listIcon,
@@ -211,8 +224,8 @@ const Menu: React.FC<MenuProps> = () => {
               {option.subList && (
                 <Collapse in={option.title === openSubList} timeout="auto" unmountOnExit>
                   <List className={classes.subListContainer} dense component="div" disablePadding>
-                    {option.subList.map((option) => (
-                      <ListItem className={classes.listItem} key={option} button>
+                    {option.subList.map((option, index) => (
+                      <ListItem className={classes.listItem} key={index} button>
                         <ListItemText>{option}</ListItemText>
                       </ListItem>
                     ))}
@@ -233,14 +246,9 @@ const Menu: React.FC<MenuProps> = () => {
           dense
           disablePadding
         >
-          {componentOptions.map((option) => (
-            <React.Fragment>
-              <ListItem
-                onClick={onHighListItemClickHandler(option.title)}
-                className={classes.listItem}
-                key={option.title}
-                button
-              >
+          {componentOptions.map((option, index) => (
+            <React.Fragment key={index}>
+              <ListItem onClick={onHighListItemClickHandler(option.title)} className={classes.listItem} button>
                 <ListItemIcon
                   classes={{
                     root: classes.listIcon,
@@ -258,8 +266,8 @@ const Menu: React.FC<MenuProps> = () => {
               {option.subList && (
                 <Collapse in={option.title === openSubList} timeout="auto" unmountOnExit>
                   <List className={classes.subListContainer} dense component="div" disablePadding>
-                    {option.subList.map((option) => (
-                      <ListItem className={classes.listItem} key={option} button>
+                    {option.subList.map((option, index) => (
+                      <ListItem className={classes.listItem} key={index} button>
                         <ListItemText>{option}</ListItemText>
                       </ListItem>
                     ))}
@@ -280,9 +288,9 @@ const Menu: React.FC<MenuProps> = () => {
           dense
           disablePadding
         >
-          {userOptions.map((option) => (
-            <React.Fragment>
-              <ListItem className={classes.listItem} key={option.title} button>
+          {userOptions.map((option, index) => (
+            <React.Fragment key={index}>
+              <ListItem className={classes.listItem} button>
                 <ListItemIcon
                   classes={{
                     root: classes.listIcon,
